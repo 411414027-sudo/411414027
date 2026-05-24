@@ -6,10 +6,11 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
+    color: #2c3e50;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-attachment: fixed;
 }
 
 a {
@@ -17,38 +18,72 @@ a {
     color: inherit;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* ========== 導覽列 ========== */
 .navbar {
-    background-color: #2c3e50;
-    padding: 1rem 0;
+    background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    flex-wrap: wrap;
 }
 
 .navbar a {
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
     transition: all 0.3s ease;
     font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3498db;
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::before,
+.navbar a.active::before {
+    width: 100%;
 }
 
 .navbar a:hover,
 .navbar a.active {
-    background-color: #3498db;
-    color: white;
+    background-color: rgba(52, 152, 219, 0.1);
+    color: #3498db;
 }
 
 /* ========== 容器 ========== */
@@ -62,7 +97,11 @@ a {
 /* ========== 首頁 ========== */
 .hero {
     text-align: center;
-    padding: 3rem 0;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
 }
 
 .avatar {
@@ -71,46 +110,58 @@ a {
     border-radius: 50%;
     border: 4px solid #3498db;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 24px rgba(52, 152, 219, 0.3);
     object-fit: cover;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
 }
 
 .hero h1 {
     font-size: 2.5rem;
     color: #2c3e50;
     margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .intro-text {
     font-size: 1.1rem;
-    color: #555;
+    color: #34495e;
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.8;
+    line-height: 1.9;
+    font-weight: 400;
 }
 
 .cta-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
     margin: 2rem 0;
 }
 
 .about {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,249,250,0.98) 100%);
+    padding: 3rem 2rem;
+    border-radius: 12px;
     margin-top: 2rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-top: 4px solid #3498db;
 }
 
 .about h2 {
     color: #2c3e50;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
 }
 
 .about p {
@@ -121,65 +172,141 @@ a {
 .about-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .about-item {
-    background-color: #f8f9fa;
-    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+    padding: 2rem;
     border-radius: 8px;
     border-left: 4px solid #3498db;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .about-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.15);
+    transform: translateY(-4px);
+    border-left-color: #2980b9;
 }
 
 .about-item h3 {
     color: #2c3e50;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.about-item p 技能區塊 ========== */
+.skills {
+    background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,249,250,0.98) 100%);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-top: 4px solid #2980b9;
+}
+
+.skills h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    background: linear-gradient(135deg, #f0f4f8 0%, #ecf0f1 100%);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(52, 152, 219, 0.1);
+}
+
+.skill-category:hover {
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.15);
+    transform: translateY(-4px);
+}
+
+    font-weight: 700;
+}
+
+.section-intro {
+    color: #7f8c8d;
     font-size: 1.1rem;
+    margin-bottom: 2rem;
 }
 
-.about-item p {
-    color: #555;
-    font-size: 0.95rem;
-    line-height: 1.7;
+.projects-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2rem;
 }
 
-/* ========== 按鈕 ========== */
-.btn {
+.projects-table thead {
+    background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+}
+
+.projects-table th,
+.projects-table td {
+    padding: 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.projects-table tbody tr:hover {
+    background-color: #f0f7ff;
+    transition: background-color 0.3s ease;
+}
+
+.projects-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.achievements {
+    list-style: none;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.achievements li {
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    color: #27ae60;
+    font-weight: 500;
+}
+
+.project-link {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    padding: 0.6rem 1.4rem;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border-radius: 6px;
     font-weight: 600;
     transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
 }
 
-.btn-primary {
-    background-color: #3498db;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-}
-
-.btn-secondary {
-    background-color: #95a5a6;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #7f8c8d;
+.project-link:hover {
+    background: linear-gradient(135deg, #2980b9, #1f618d);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(149, 165, 166, 0.3);
 }
@@ -261,18 +388,24 @@ a {
 
 /* ========== 履歷樣式 ========== */
 .resume-section {
-    background-color: white;
-    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.95) 100%);
+    padding: 2rem;
     margin-bottom: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border-left: 4px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.resume-section:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .resume-section h3 {
     color: #2c3e50;
     margin-bottom: 1rem;
     font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .resume-section h4 {
@@ -280,6 +413,7 @@ a {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .resume-section p {
@@ -294,7 +428,7 @@ a {
 }
 
 .resume-list li {
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
     color: #555;
     line-height: 1.6;
     border-bottom: 1px solid #ecf0f1;
@@ -305,14 +439,22 @@ a {
 }
 
 .project-item {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+    padding: 1.5rem;
+    border-radius: 8px;
     margin-bottom: 1rem;
+    border: 1px solid rgba(52, 152, 219, 0.1);
+    transition: all 0.3s ease;
+}
+
+.project-item:hover {
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+    border-color: rgba(52, 152, 219, 0.3);
 }
 
 .project-item h4 {
     color: #2980b9;
+    font-weight: 600;
 }
 
 .project-item p {
@@ -325,6 +467,7 @@ a {
     color: #2c3e50;
     margin-bottom: 1rem;
     font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .contact-content {
@@ -336,10 +479,11 @@ a {
 
 .contact-info,
 .contact-form {
-    background-color: white;
-    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.95) 100%);
+    padding: 2.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-top: 4px solid #3498db;
 }
 
 .contact-info h2,
@@ -347,6 +491,7 @@ a {
     color: #2c3e50;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .contact-item {
@@ -357,17 +502,33 @@ a {
     color: #34495e;
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .contact-link {
     color: #3498db;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3498db;
+    transition: width 0.3s ease;
 }
 
 .contact-link:hover {
     color: #2980b9;
-    text-decoration: underline;
+}
+
+.contact-link:hover::after {
+    width: 100%;
 }
 
 .contact-buttons {
@@ -384,20 +545,22 @@ a {
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     color: #34495e;
     font-weight: 600;
+    font-size: 0.95rem;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #bdc3c7;
-    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
     font-family: inherit;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background-color: white;
 }
 
 .form-group input:focus,
@@ -405,41 +568,54 @@ a {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    background-color: #f9fafb;
 }
 
 .form-message {
     margin-top: 1rem;
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
     text-align: center;
     font-weight: 600;
     display: none;
+    background-color: #ecf0f1;
 }
 
 /* ========== 頁尾 ========== */
 footer {
-    background-color: #2c3e50;
+    background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
     color: white;
     text-align: center;
-    padding: 1.5rem;
+    padding: 2rem 1rem;
     margin-top: 3rem;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
 }
 
 footer p {
     margin: 0;
+    font-weight: 500;
 }
 
 /* ========== 響應式設計 ========== */
 @media (max-width: 768px) {
-    .navbar ul {
+    .navbar {
         flex-direction: column;
+        gap: 1rem;
+    }
+
+    .navbar ul {
+        flex-direction: row;
         gap: 0.5rem;
-        padding: 1rem;
+        justify-content: center;
     }
 
     .navbar a {
-        display: block;
-        text-align: center;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .hero {
+        padding: 2rem 1.5rem;
     }
 
     .hero h1 {
@@ -452,6 +628,7 @@ footer p {
 
     .cta-buttons .btn {
         width: 100%;
+        text-align: center;
     }
 
     .projects-table {
@@ -461,6 +638,14 @@ footer p {
     .projects-table th,
     .projects-table td {
         padding: 0.75rem 0.5rem;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
     }
 
     .contact-content {
@@ -492,20 +677,63 @@ footer p {
     }
 
     .hero {
-        padding: 1.5rem 0;
+        padding: 1.5rem 1rem;
     }
 
     .hero h1 {
         font-size: 1.5rem;
     }
 
-    .portfolio h1,
-    .contact h1 {
-        font-size: 1.8rem;
+    .navbar {
+        padding: 0.75rem 1rem;
     }
 
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar ul {
+        gap: 0.25rem;
+    }
+
+    .navbar a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .about h2,
+    .skills h2,
+    .portfolio h1,
+    .contact h1 {
+        font-size: 1.5rem;
+    }
+
+    .about-item,
     .contact-info,
     .contact-form {
         padding: 1.5rem;
+    }
+
+    .skill-tags {
+        gap: 0.5rem;
+    }
+
+    .skill-tag {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .projects-table {
+        font-size: 0.8rem;
+    }
+
+    .projects-table th,
+    .projects-table td {
+        padding: 0.5rem;
     }
 }
