@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡 - 個人網站</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="work.html">作品</a></li>
+            <li><a href="contact.html" class="active">聯絡</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="contact">
+            <h1>聯絡我</h1>
+            <p class="section-intro">如有任何問題或機會，歡迎與我聯繫</p>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>聯絡方式</h2>
+                    
+                    <div class="contact-item">
+                        <h3>📧 電子郵件</h3>
+                        <p>
+                            <a href="mailto:411414027@mail.nknu.edu.tw" class="contact-link">
+                                411414027@mail.nknu.edu.tw
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h3>📱 Instagram</h3>
+                        <p>
+                            <a href="https://instagram.com/abramsqiu_0106" target="_blank" class="contact-link">
+                                @abramsqiu_0106
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="contact-buttons">
+                        <a href="mailto:411414027@mail.nknu.edu.tw" class="btn btn-primary">發送郵件</a>
+                        <a href="https://instagram.com/abramsqiu_0106" target="_blank" class="btn btn-secondary">訪問 Instagram</a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>快速留言</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">電子郵件</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">留言內容</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">發送留言</button>
+                    </form>
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 個人網站 | 版權所有</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const formMessage = document.getElementById('formMessage');
+            
+            if (name && email && message) {
+                formMessage.textContent = '感謝您的留言！我會盡快回覆。';
+                formMessage.style.color = '#27ae60';
+                formMessage.style.display = 'block';
+                
+                document.getElementById('contactForm').reset();
+                
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 3000);
+            } else {
+                formMessage.textContent = '請填寫所有欄位。';
+                formMessage.style.color = '#e74c3c';
+                formMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
